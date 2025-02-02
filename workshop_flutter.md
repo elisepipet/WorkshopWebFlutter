@@ -1,135 +1,111 @@
-## Workshop : Création d’une application web en Flutter avec authentification
+# Workshop : Création d’une application web en Flutter avec authentification et gestion de posts
 
-### Objectif
-
-L’objectif de ce workshop est d’apprendre à développer une application web en Flutter intégrant une authentification via une API REST.
+## Objectif
+L’objectif de ce workshop est d’apprendre à développer une application web en Flutter en intégrant une authentification et une gestion de posts via une API REST.
 
 ---
 
 ## Étapes détaillées du Workshop
 
-### **1. Mise en place de l’environnement de développement (40 min)**
+### **1. Mise en place de l'environnement de développement**
 
 #### **Installation de Flutter et des outils nécessaires**
-- Installer Flutter et les outils nécessaires.
-    - Sur Fedora :
-        ```
-        sudo dnf install clang cmake curl git make ninja unzip which
-        ```
-        ```
-        cd ~ && git clone https://github.com/flutter/flutter.git -b stable
-        ```
-        ```
-        echo 'export PATH="$HOME/flutter/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
-        ```
-        ```
-        flutter doctor
-        ```
-    - Sur Ubuntu :
-        ```
-        sudo apt update
-        sudo apt install curl git unzip xz-utils clang cmake ninja-build pkg-config libgtk-3-dev
-        ```
-        ```
-        cd ~ && git clone https://github.com/flutter/flutter.git -b stable
-        ```
-        ```
-        echo 'export PATH="$HOME/flutter/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
-        ```
-        ```
-        flutter doctor
-        ```
-    - Sur MacOs avec HomeBrew
-        ```
-        brew install flutter
-        ```
-        ```
-        flutter doctor
-        ```
-    - Pour plus de  détails : **Documentation officielle de Flutter** : [https://flutter.dev/docs/get-started/install](https://flutter.dev/docs/get-started/install)
+- Suivre les instructions d'installation de Flutter selon votre système d'exploitation :
+  - Fedora :
+    ```sh
+    sudo dnf install clang cmake curl git make ninja unzip which
+    cd ~ && git clone https://github.com/flutter/flutter.git -b stable
+    echo 'export PATH="$HOME/flutter/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+    flutter doctor
+    ```
+  - Ubuntu :
+    ```sh
+    sudo apt update
+    sudo apt install curl git unzip xz-utils clang cmake ninja-build pkg-config libgtk-3-dev
+    cd ~ && git clone https://github.com/flutter/flutter.git -b stable
+    echo 'export PATH="$HOME/flutter/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+    flutter doctor
+    ```
+  - macOS avec HomeBrew :
+    ```sh
+    brew install flutter
+    flutter doctor
+    ```
+  - Plus de détails : [Documentation officielle de Flutter](https://flutter.dev/docs/get-started/install)
 
 #### **Création et exploration du projet Flutter**
-
 - Créer un projet Flutter :
-  ```bash
+  ```sh
   flutter create my_app
   cd my_app
   flutter run -d chrome
   ```
-- Comprendre la structure d’un projet Flutter (dossier `lib/`, fichier `main.dart`, widgets, etc.).
-- Créer une page d’accueil simple (`HomePage`).
+- Comprendre la structure d’un projet Flutter (dossier lib/, fichier main.dart, widgets, etc.).
 
 ---
 
-### **2. Découverte de l’API et gestion des requêtes HTTP (50 min)**
+### **2. Gestion de l'authentification (Login/Register)**
 
-#### **Introduction aux API REST**
+#### **Création des pages de connexion et d'inscription**
+- Interface utilisateur avec TextFields pour l’email et le mot de passe.
+- Bouton de soumission du formulaire.
 
-- **Introduction aux API REST** : [https://developer.mozilla.org/fr/docs/Learn/JavaScript/Client-side_web_APIs/Introduction](https://developer.mozilla.org/fr/docs/Learn/JavaScript/Client-side_web_APIs/Introduction)
-
-#### **Ajout du package `http` et première requête**
-
-- Ajouter la dépendance au fichier `pubspec.yaml` :
+#### **Connexion et inscription via API REST**
+- Ajout du package `http` dans `pubspec.yaml` :
   ```yaml
   dependencies:
     http: ^0.13.4
   ```
-- Effectuer une requête GET vers une API publique et afficher les données récupérées dans un `ListView`.
+- Envoi des données d'authentification via une requête `POST`.
+- Gestion des réponses API (succès, erreurs).
 
 ---
 
-### **3. Création des pages de connexion et d’inscription (1h)**
+### **3. Recherche et implémentation du stockage du token**
 
-#### **Interface utilisateur pour la connexion et l’inscription**
-
-- Création des pages `LoginPage` et `RegisterPage` avec `TextField` pour l’email et le mot de passe.
-- Ajout d’un bouton pour soumettre le formulaire.
-
-#### **Connexion et inscription avec l’API**
-
-- Envoi des données d’authentification via une requête POST.
-- Gestion des réponses de l’API (succès, erreurs).
+- Utilisation de `shared_preferences` ou `flutter_secure_storage` pour stocker le token.
+- Ajout de la vérification de l'authentification à chaque démarrage.
+- Redirection de l'utilisateur vers la page d'accueil s'il est déjà connecté.
 
 ---
 
-### **4. Gestion du token et authentification persistante (50 min)**
+### **4. Affichage des posts existants**
 
-#### **Introduction aux tokens JWT**
-
-- **Introduction aux tokens JWT** : [https://jwt.io/introduction](https://jwt.io/introduction)
-- Recherche et implémentation d’une solution pour stocker le token après authentification.
-- Vérifier si un utilisateur est déjà authentifié au lancement de l’application et le rediriger vers `HomePage` si c’est le cas.
+- Récupération des posts via une requête `GET`.
+- Affichage des posts dans un `ListView`.
+- Utilisation de `FutureBuilder` pour gérer le chargement des données.
 
 ---
 
-### **5. Effectuer des requêtes authentifiées (40 min)**
+### **5. Création d'un nouveau post**
 
-#### **Ajout du token aux requêtes HTTP**
-
-- Modification des requêtes pour inclure le token dans l’en-tête.
-- Récupérer des données protégées par l’API et les afficher dans une nouvelle page.
+- Ajout d'un bouton `+` sur la page d'accueil.
+- Lors du clic, redirection vers une page de création de post.
 
 ---
 
-### **6. Déconnexion et gestion avancée des erreurs (40 min)**
+### **6. Page de création de post**
 
-- Supprimer le token de la solution de stockage choisie et rediriger l’utilisateur vers la page de connexion.
-- Gérer les erreurs de connexion et afficher des messages explicites pour l’utilisateur.
+- Ajout de `TextFields` pour le titre et le contenu du post.
+- Bouton pour soumettre le post via une requête `POST`.
+- Retour automatique à la liste des posts après création.
 
 ---
 
-### **7. Améliorations et fonctionnalités avancées**
+### **7. Gestion des commentaires**
 
-#### **Ajout d’un profil utilisateur**
+#### **Affichage des commentaires**
+- Bouton pour afficher les commentaires d'un post.
+- Récupération et affichage des commentaires via une requête `GET`.
 
-- Permettre aux utilisateurs de mettre à jour leurs informations personnelles.
+#### **Ajout d'un commentaire**
+- Bouton permettant d'ajouter un commentaire.
+- `TextField` pour saisir le commentaire.
+- Envoi via une requête `POST`.
 
-#### **Ajout d’un dark mode**
+---
 
-- Permettre aux utilisateurs de basculer entre un mode clair et un mode sombre.
-- Sauvegarder la préférence de l’utilisateur.
+### **8. Affichage des posts d'un utilisateur**
 
-#### **Optimisation des performances**
-
-- Réduire la consommation de ressources en optimisant les appels réseau et en mettant en cache certaines données.
-- Charger les images de manière asynchrone avec un cache local.
+- Lorsqu'on clique sur le nom d'un utilisateur, affichage de ses posts.
+- Requête `GET` pour récupérer les posts filtrés par utilisateur.
