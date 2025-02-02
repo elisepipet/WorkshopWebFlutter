@@ -1,7 +1,7 @@
-# Workshop : Création d’une application web en Flutter avec authentification et gestion de posts
+# Workshop : Création d’une application en Flutter avec authentification et gestion de posts
 
 ## Objectif
-L’objectif de ce workshop est d’apprendre à développer une application web en Flutter en intégrant une authentification et une gestion de posts via une API REST.
+L’objectif de ce workshop est d’apprendre à développer une application en Flutter en intégrant une authentification et une gestion de posts via une API REST.
 
 ---
 
