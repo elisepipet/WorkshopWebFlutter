@@ -48,6 +48,7 @@ L’objectif de ce workshop est d’apprendre à développer une application en 
 
 ### **Documentation API Workshop**
   - [Documentation de notre API](https://elisepipet.github.io/WorkshopFlutterSwagger/)
+  - API Address: http://jepgo.francecentral.cloudapp.azure.com
 
 #### **Création des pages de connexion et d'inscription**
 - Interface utilisateur avec TextFields pour l’email et le mot de passe.
