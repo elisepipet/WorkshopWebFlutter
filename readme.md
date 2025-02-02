@@ -46,6 +46,9 @@ L’objectif de ce workshop est d’apprendre à développer une application en 
 
 ### **2. Gestion de l'authentification (Login/Register)**
 
+### **Documentation API Workshop**
+  - [Documentation de notre API](https://elisepipet.github.io/WorkshopFlutterSwagger/)
+
 #### **Création des pages de connexion et d'inscription**
 - Interface utilisateur avec TextFields pour l’email et le mot de passe.
 - Bouton de soumission du formulaire.
