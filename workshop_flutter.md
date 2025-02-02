@@ -11,8 +11,42 @@ L’objectif de ce workshop est d’apprendre à développer une application web
 ### **1. Mise en place de l’environnement de développement (40 min)**
 
 #### **Installation de Flutter et des outils nécessaires**
-
-- **Documentation officielle de Flutter** : [https://flutter.dev/docs/get-started/install](https://flutter.dev/docs/get-started/install)
+- Installer Flutter et les outils nécessaires.
+    - Sur Fedora :
+        ```
+        sudo dnf install clang cmake curl git make ninja unzip which
+        ```
+        ```
+        cd ~ && git clone https://github.com/flutter/flutter.git -b stable
+        ```
+        ```
+        echo 'export PATH="$HOME/flutter/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+        ```
+        ```
+        flutter doctor
+        ```
+    - Sur Ubuntu :
+        ```
+        sudo apt update
+        sudo apt install curl git unzip xz-utils clang cmake ninja-build pkg-config libgtk-3-dev
+        ```
+        ```
+        cd ~ && git clone https://github.com/flutter/flutter.git -b stable
+        ```
+        ```
+        echo 'export PATH="$HOME/flutter/bin:$PATH"' >> ~/.bashrc && source ~/.bashrc
+        ```
+        ```
+        flutter doctor
+        ```
+    - Sur MacOs avec HomeBrew
+        ```
+        brew install flutter
+        ```
+        ```
+        flutter doctor
+        ```
+    - Pour plus de  détails : **Documentation officielle de Flutter** : [https://flutter.dev/docs/get-started/install](https://flutter.dev/docs/get-started/install)
 
 #### **Création et exploration du projet Flutter**
 
